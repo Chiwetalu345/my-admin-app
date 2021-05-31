@@ -9,7 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
-      { path: 'register', component: SignupComponent },
+      { path: ' ', component: SignupComponent },
       { path: 'login', component: LoginComponent },
       { path: 'home', component: DashboardComponent }
 

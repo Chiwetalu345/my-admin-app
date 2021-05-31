@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
 import "firebase/firestore";
 import { FirebaseService } from '../Shared/firebase.service';
-import{ CrudService} from '../Shared/crud.service'
+import { CrudService } from '../Shared/crud.service'
 import { ActivatedRoute, Params, Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
@@ -11,56 +11,56 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  isSignedIn=false
-  
+  isSignedIn = false
+
   user_name!: string;
   user_email!: string;
   message!: string;
-  user_password!:string;
+  user_password!: string;
 
-  blocked=false;
+  blocked = false;
 
-  constructor(public firebaseService:FirebaseService, public crudservice:CrudService,private router: Router, private route: ActivatedRoute) { }
+  constructor(public firebaseService: FirebaseService, public crudservice: CrudService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     if (localStorage.getItem('user')! == null)
-      this.isSignedIn=true
-      else
-      this.isSignedIn=false
+      this.isSignedIn = true
+    else
+      this.isSignedIn = false
   }
-      async onSignup(email:string,password:string){
-        await this.firebaseService.signup(email,password)
-        let Record:any = {};
-        Record['id'] = firebase.default.firestore().collection("users").doc().id
-        Record['email'] = this.user_email;
-        Record['name'] = this.user_name;
-        Record['blocked']=this.blocked;
-        Record['timestamp'] = firebase.default.firestore.FieldValue.serverTimestamp();
-        Record['created_date'] = new Date().toDateString()
+  async onSignup(email: string, password: string) {
+    await this.firebaseService.signup(email, password)
+    let Record: any = {};
+    Record['id'] = firebase.default.firestore().collection("users").doc().id
+    Record['email'] = this.user_email;
+    Record['name'] = this.user_name;
+    Record['blocked'] = this.blocked;
+    Record['timestamp'] = firebase.default.firestore.FieldValue.serverTimestamp();
+    Record['created_date'] = new Date().toDateString()
 
-        this.crudservice.create_Newuser(Record).then(res=>{
-          this.user_name='';
-          this.user_email='';
-          this.user_password='';
-          this.blocked=false;
-          console.log(res);
-          this.message='User data save done'
-        }).catch(error=>{
+    this.crudservice.create_Newuser(Record).then(res => {
+      this.user_name = '';
+      this.user_email = '';
+      this.user_password = '';
+      this.blocked = false;
+      console.log(res);
+      this.message = 'User data save done'
+    }).catch(error => {
       console.log(error);
     });
-        if (this.firebaseService.isLoggedin)
-          this.isSignedIn=true
-          alert("Sign up is successful")
-          this.router.navigateByUrl('d');
-      }
-      async onSignin(email:string,password:string){
-        await this.firebaseService.signup(email,password)
-        if (this.firebaseService.isLoggedin)
-          this.isSignedIn=true
-      }
-      handleLogout(){
-        this.isSignedIn=false;
-      }
+    if (this.firebaseService.isLoggedin)
+      this.isSignedIn = true
+    alert("Sign up is successful")
+    this.router.navigateByUrl("/home")
   }
+  async onSignin(email: string, password: string) {
+    await this.firebaseService.signup(email, password)
+    if (this.firebaseService.isLoggedin)
+      this.isSignedIn = true
+  }
+  handleLogout() {
+    this.isSignedIn = false;
+  }
+}
 
 
