@@ -1,0 +1,28 @@
+<body>
+
+    <form #noteForm="ngForm">
+
+        <h1>Sign Up</h1>
+
+        <fieldset>
+            <!-- <legend><span class="number">1</span>Your basic info</legend> -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" [(ngModel)]="user_name" required class="input" >
+
+            <label for="mail">Email:</label>
+            <input type="email" id="mail" name="user_email"  [(ngModel)]="user_email"  required class="input" #emailSignup>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="user_password" [(ngModel)]="user_password"  required class="input" #passwordSignup>
+
+        </fieldset>
+
+        <!-- <fieldset>
+            <legend><span class="number">2</span>Your profile</legend>
+            <label for="bio">Biography:</label>
+            <textarea id="bio" name="user_bio"></textarea>
+        </fieldset> -->
+        
+        <button type="submit" (click)="onSignup(emailSignup.value,passwordSignup.value)" [disabled]="!user_name||!user_email">Sign Up</button>
+    </form>
+

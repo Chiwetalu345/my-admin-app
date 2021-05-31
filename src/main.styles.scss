@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+// Set your brand colors
+$purple: #a59ad7;
+$pink: #fe76c2;
+$blue: #37c7f2;
+
+$light-red: #fff3f3;
+
+$light: #fafcff;
+
+
+$orange: #e08d55;
+
+$light-dark: #2e2e2e;
+$dark: #020201;
+$family-sans-serif: "Nunito", sans-serif;
+
+
+
+// GLOBAL STYLES
+
+html, body{
+    height: 100%;
+    font-size: 18px !important;
+    overflow: hidden !important;
+    padding: 0;
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+}
