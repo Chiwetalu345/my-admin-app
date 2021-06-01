@@ -60,6 +60,9 @@ export class LoginComponent implements OnInit {
       this.isSignedIn = true
       this.router.navigateByUrl("/home")
     }
+    else {
+      alert("invalid username or password");
+    }
   }
   public handleLogout() {
     this.isSignedIn = false;

@@ -623,7 +623,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '', component: _main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"], children: [
-            { path: ' ', component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_4__["SignupComponent"] },
+            { path: '', component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_4__["SignupComponent"] },
             { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
             { path: 'home', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_1__["DashboardComponent"] }
         ]
@@ -712,6 +712,9 @@ class LoginComponent {
             if (this.firebaseService.isLoggedin) {
                 this.isSignedIn = true;
                 this.router.navigateByUrl("/home");
+            }
+            else {
+                alert("invalid username or password");
             }
         });
     }
